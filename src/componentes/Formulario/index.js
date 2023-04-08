@@ -5,23 +5,17 @@ import Botao from '../Botao'
 import { useState } from 'react'
 const Formulario = (props) => {
 
-    const times = [
-        'Levante',
-        'Líbero',
-        'Ponteiro',
-        'Coringa'
-    ]
 
     const [nome, setNome] = useState('')
-    const [sobrenome, setSobrenome] = useState('')
+    const [apelido, setApelido] = useState('')
     const [imagem, setImagem] = useState('')
     const [posicao, setPosicao] = useState('')
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
-        props.aoColaboradorCadastrado({
+        props.aoAtletaCadastrado({
             nome, 
-            sobrenome,
+            apelido,
             imagem,
             posicao
         })
@@ -34,16 +28,16 @@ const Formulario = (props) => {
                 <CampoTexto 
                     obrigatorio={true} 
                     label="Nome" 
-                    placeholder="Digite seu nome" 
+                    placeholder="Digite seu nome e sobrenome" 
                     valor = {nome}
                     aoAlterado={valor => setNome(valor)}
                     />
                 <CampoTexto 
                     obrigatorio={true} 
-                    label="Sobrenome" 
-                    placeholder="Digite seu sobrenome" 
-                    valor={sobrenome}
-                    aoAlterado={valor => setSobrenome(valor)}
+                    label="Apelido" 
+                    placeholder="Digite seu apelido" 
+                    valor={apelido}
+                    aoAlterado={valor => setApelido(valor)}
                     />
                 <CampoTexto 
                     label="Imagem" 
@@ -53,7 +47,8 @@ const Formulario = (props) => {
                     />
                 <ListaSuspensa 
                     obrigatorio={true}  
-                    label = "Posição" itens = {times}
+                    label = "Posição" 
+                    itens = {props.posicoes}
                     valor ={posicao}
                     aoAlterado={valor => setPosicao(valor)}
                     />

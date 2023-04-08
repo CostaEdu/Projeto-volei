@@ -7,31 +7,31 @@ function App() {
 
   const posicoes = [
     {
-      nome: '',
-      corPrimaria: '',
-      corSecundaria:''
+      nome: 'Levante',
+      corPrimaria: '#f4d0fb',
+      corSecundaria:'#f9e7fd'
     },
     {
-      nome: '',
-      corPrimaria '',
-      corSecundaria:''
+      nome: 'Líbero',
+      corPrimaria: '#fefbaf',
+      corSecundaria:'#fefdc8'
     },
     {
-      nome: '',
-      corPrimaria: '',
-      corSecundaria:''
+      nome: 'Ponteiro',
+      corPrimaria: '#8efca7',
+      corSecundaria:'#b0ffc0'
     },
     {
-      nome: '',
-      corPrimaria: '',
-      corSecundaria:''
+      nome: 'Coringa',
+      corPrimaria: '#72bbec',
+      corSecundaria:'#91d3ff'
     },
   ]
-  const [colaboradores, setColaboradores] = useState ([])
+  const [atletas, setAtletas] = useState ([])
 
-  const aoNovoColaboradorAdicionado = (colaborador) =>{
-    console.log(colaborador)
-    setColaboradores({...colaboradores, colaborador})
+  const aoNovoAtletaAdicionado = (atleta) =>{
+    console.log(atleta)
+    setAtletas({...atletas, atleta})
 
 
   }
@@ -39,11 +39,16 @@ function App() {
   return (
     <div className="App">
       <Banner />
-      <Formulario aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)  } />
-      <Posicao nome ="Levantes"/>
-      <Posicao nome ="Líberos"/>
-      <Posicao nome ="Ponteiros"/>
-      <Posicao nome ="Coringas"/>
+      <Formulario posicoes={posicoes.map(posicao => posicao.nome)} aoAtletaCadastrado={atleta => aoNovoAtletaAdicionado(atleta)  } />
+      
+      {posicoes.map(time => <Posicao  
+      key={posicao.nome} 
+      nome={posicao.nome} 
+      corPrimaria={posicao.corPrimaria} 
+      corSecundaria={posicao.corSecundaria}
+      atletas={atletas.filter(atleta => atleta.posicao === posicao.nome)}
+      />)}
+      
     </div>
   );
 }
