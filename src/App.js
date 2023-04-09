@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Banner from './componentes/Banner/Banner';
+import Banner from './componentes/Banner/index';
 import Formulario from './componentes/Formulario';
 import Posicao from './componentes/posicao';
 
@@ -41,7 +41,7 @@ function App() {
       <Banner />
       <Formulario posicoes={posicoes.map(posicao => posicao.nome)} aoAtletaCadastrado={atleta => aoNovoAtletaAdicionado(atleta)  } />
       
-      {posicoes.map(time => <Posicao  
+      {posicoes.map(posicao => <Posicao  
       key={posicao.nome} 
       nome={posicao.nome} 
       corPrimaria={posicao.corPrimaria} 
